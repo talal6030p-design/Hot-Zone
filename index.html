@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTZONE - فريق كرة السلة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+            padding: 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 0;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 28px;
+            color: #1a1f2e;
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '🔥';
+            position: absolute;
+            font-size: 20px;
+            top: -5px;
+            right: -5px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffc107;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #ffc107;
+            border-bottom-color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .nav-link.active {
+            color: #ffc107;
+            border-bottom-color: #ff8c00;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffc107;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffc107 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Styling */
+        section {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            color: #1a1f2e;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ffc107;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Manager Section */
+        .manager-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-right: 5px solid #ffc107;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manager-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .manager-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #ffc107;
+            position: relative;
+            z-index: 1;
+        }
+
+        .manager-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Players Grid */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-right: 5px solid #ffc107;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #ff8c00 50%, transparent 100%);
+        }
+
+        .player-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.2);
+            border-right-color: #ff8c00;
+        }
+
+        .player-card h3 {
+            font-size: 1.6em;
+            color: #1a1f2e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .player-card h3::before {
+            content: '🏀';
+            font-size: 1.3em;
+        }
+
+        .player-card p {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* Coming Talents Section */
+        .talents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .talent-card {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8cc 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-right: 5px solid #ff8c00;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .talent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #ffc107 50%, transparent 100%);
+        }
+
+        .talent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.2);
+            border-right-color: #ffc107;
+        }
+
+        .talent-card h3 {
+            font-size: 1.6em;
+            color: #1a1f2e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .talent-card h3::before {
+            content: '⭐';
+            font-size: 1.3em;
+        }
+
+        .talent-card p {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            font-size: 1.1em;
+            border-top: 3px solid #ffc107;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer .footer-logo {
+            color: #ffc107;
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                flex-direction: column;
+                background: #0f1419;
+                width: 100%;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 193, 7, 0.1);
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            .players-grid,
+            .talents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">H</div>
+                <span class="logo-text">HOTZONE</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">عن الفريق</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#manager" class="nav-link">المدير</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#players" class="nav-link">اللاعبون</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#talents" class="nav-link">المواهب القادمة</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <div class="hero-content">
+            <h1>🔥 HOTZONE</h1>
+            <p>في أواخر عام ٢٠٢٤ ولدت شعلة صغيرة، لكنها بدأت تنمو وتزدهر وتشعل كل ما يلامسها</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Manager Section -->
+        <section id="manager">
+            <h2>👨‍💼 المدير</h2>
+            <div class="manager-card">
+                <h3>توتو</h3>
+                <p>أثبت جدارته بالعمل الشاق وإدارة المواقف</p>
+            </div>
+        </section>
+
+        <!-- Players Section -->
+        <section id="players">
+            <h2>⭐ اللاعبون</h2>
+            <div class="players-grid">
+                <div class="player-card">
+                    <h3>كوبي</h3>
+                    <p>قائد في الميدان ويتحكم باللعب وكأنه مايسترو</p>
+                </div>
+
+                <div class="player-card">
+                    <h3>أمير</h3>
+                    <p>إذا كنت ضده فلا أعلم إلى أي درجة حظك سيئ هذا اليوم</p>
+                </div>
+
+                <div class="player-card">
+                    <h3>برما</h3>
+                    <p>عندما يأخذ وضعية التسديد، كزميل له عد للوراء ولا تقلق</p>
+                </div>
+
+                <div class="player-card">
+                    <h3>جهاد</h3>
+                    <p>الأكثر حصولاً على جائزة لاعب الشهر</p>
+                </div>
+
+                <div class="player-card">
+                    <h3>عكه</h3>
+                    <p>كان معروفاً باسم الكانسر</p>
+                </div>
+
+                <div class="player-card">
+                    <h3>دي فيرجل</h3>
+                    <p>يقضي أيامه الأخيرة على الساحل الشرقي</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Talents Section -->
+        <section id="talents">
+            <h2>🌟 المواهب القادمة</h2>
+            <div class="talents-grid">
+                <div class="talent-card">
+                    <h3>حمزة</h3>
+                    <p>من اللاعبين الواعدين الذين لم يستمروا بالملاعب</p>
+                </div>
+
+                <div class="talent-card">
+                    <h3>مشعل</h3>
+                    <p>حتى ولو كانت الموهبة عالية، حب الملاهي الليلية كفيل بأن يدمر مسيرتك</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><span class="footer-logo">🔥 HOTZONE</span></p>
+        <p>© 2024 فريق HOTZONE - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
