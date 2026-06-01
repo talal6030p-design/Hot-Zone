@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HotZone Hoopers</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="flag-card">
+      <div class="team-flag">
+        <div class="flag-wave"></div>
+        <div class="flag-inner"></div>
+        <div class="flame"></div>
+      </div>
+      <div class="hero-text">
+        <h1>HotZone Hoopers</h1>
+        <p>Fast breaks, strong defense, and the spirit of the court.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="about">
+      <h2>About the Team</h2>
+      <p>The HotZone Hoopers are a passionate virtual basketball team built around teamwork, speed, and a winning mindset. We train hard, support each other on and off the court, and aim to bring the heat every game.</p>
+    </section>
+
+    <section class="manager">
+      <h2>Manager</h2>
+      <div class="person-card">
+        <div>
+          <h3>Ava Carter</h3>
+          <p>Team Manager</p>
+        </div>
+        <p>Ava leads the Hoopers with sharp strategy, strong support, and a focus on player growth.</p>
+      </div>
+    </section>
+
+    <section class="roster">
+      <h2>Player Roster</h2>
+      <div class="player-grid">
+        <div class="player-card">
+          <h3>Jordan Hale</h3>
+          <p>Point Guard</p>
+        </div>
+        <div class="player-card">
+          <h3>Riley Brooks</h3>
+          <p>Shooting Guard</p>
+        </div>
+        <div class="player-card">
+          <h3>Cam Rivera</h3>
+          <p>Small Forward</p>
+        </div>
+        <div class="player-card">
+          <h3>Kai Monroe</h3>
+          <p>Power Forward</p>
+        </div>
+        <div class="player-card">
+          <h3>Blake Owens</h3>
+          <p>Center</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>HotZone Hoopers | Virtual basketball team</p>
+  </footer>
+</body>
+</html>
